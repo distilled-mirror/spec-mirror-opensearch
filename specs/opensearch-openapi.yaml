@@ -589,6 +589,7 @@ paths:
         - $ref: '#/components/parameters/cat.aliases___query.format'
         - $ref: '#/components/parameters/cat.aliases___query.h'
         - $ref: '#/components/parameters/cat.aliases___query.help'
+        - $ref: '#/components/parameters/cat.aliases___query.limit'
         - $ref: '#/components/parameters/cat.aliases___query.local'
         - $ref: '#/components/parameters/cat.aliases___query.s'
         - $ref: '#/components/parameters/cat.aliases___query.v'
@@ -616,6 +617,7 @@ paths:
         - $ref: '#/components/parameters/cat.aliases___query.format'
         - $ref: '#/components/parameters/cat.aliases___query.h'
         - $ref: '#/components/parameters/cat.aliases___query.help'
+        - $ref: '#/components/parameters/cat.aliases___query.limit'
         - $ref: '#/components/parameters/cat.aliases___query.local'
         - $ref: '#/components/parameters/cat.aliases___query.s'
         - $ref: '#/components/parameters/cat.aliases___query.v'
@@ -643,6 +645,7 @@ paths:
         - $ref: '#/components/parameters/cat.allocation___query.format'
         - $ref: '#/components/parameters/cat.allocation___query.h'
         - $ref: '#/components/parameters/cat.allocation___query.help'
+        - $ref: '#/components/parameters/cat.allocation___query.limit'
         - $ref: '#/components/parameters/cat.allocation___query.local'
         - $ref: '#/components/parameters/cat.allocation___query.master_timeout'
         - $ref: '#/components/parameters/cat.allocation___query.s'
@@ -672,6 +675,7 @@ paths:
         - $ref: '#/components/parameters/cat.allocation___query.format'
         - $ref: '#/components/parameters/cat.allocation___query.h'
         - $ref: '#/components/parameters/cat.allocation___query.help'
+        - $ref: '#/components/parameters/cat.allocation___query.limit'
         - $ref: '#/components/parameters/cat.allocation___query.local'
         - $ref: '#/components/parameters/cat.allocation___query.master_timeout'
         - $ref: '#/components/parameters/cat.allocation___query.s'
@@ -699,6 +703,7 @@ paths:
         - $ref: '#/components/parameters/cat.cluster_manager___query.format'
         - $ref: '#/components/parameters/cat.cluster_manager___query.h'
         - $ref: '#/components/parameters/cat.cluster_manager___query.help'
+        - $ref: '#/components/parameters/cat.cluster_manager___query.limit'
         - $ref: '#/components/parameters/cat.cluster_manager___query.local'
         - $ref: '#/components/parameters/cat.cluster_manager___query.master_timeout'
         - $ref: '#/components/parameters/cat.cluster_manager___query.s'
@@ -725,6 +730,7 @@ paths:
         - $ref: '#/components/parameters/cat.count___query.format'
         - $ref: '#/components/parameters/cat.count___query.h'
         - $ref: '#/components/parameters/cat.count___query.help'
+        - $ref: '#/components/parameters/cat.count___query.limit'
         - $ref: '#/components/parameters/cat.count___query.s'
         - $ref: '#/components/parameters/cat.count___query.v'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -750,6 +756,7 @@ paths:
         - $ref: '#/components/parameters/cat.count___query.format'
         - $ref: '#/components/parameters/cat.count___query.h'
         - $ref: '#/components/parameters/cat.count___query.help'
+        - $ref: '#/components/parameters/cat.count___query.limit'
         - $ref: '#/components/parameters/cat.count___query.s'
         - $ref: '#/components/parameters/cat.count___query.v'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -776,6 +783,7 @@ paths:
         - $ref: '#/components/parameters/cat.fielddata___query.format'
         - $ref: '#/components/parameters/cat.fielddata___query.h'
         - $ref: '#/components/parameters/cat.fielddata___query.help'
+        - $ref: '#/components/parameters/cat.fielddata___query.limit'
         - $ref: '#/components/parameters/cat.fielddata___query.s'
         - $ref: '#/components/parameters/cat.fielddata___query.v'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -803,6 +811,7 @@ paths:
         - $ref: '#/components/parameters/cat.fielddata___query.format'
         - $ref: '#/components/parameters/cat.fielddata___query.h'
         - $ref: '#/components/parameters/cat.fielddata___query.help'
+        - $ref: '#/components/parameters/cat.fielddata___query.limit'
         - $ref: '#/components/parameters/cat.fielddata___query.s'
         - $ref: '#/components/parameters/cat.fielddata___query.v'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -827,6 +836,7 @@ paths:
         - $ref: '#/components/parameters/cat.health___query.format'
         - $ref: '#/components/parameters/cat.health___query.h'
         - $ref: '#/components/parameters/cat.health___query.help'
+        - $ref: '#/components/parameters/cat.health___query.limit'
         - $ref: '#/components/parameters/cat.health___query.s'
         - $ref: '#/components/parameters/cat.health___query.time'
         - $ref: '#/components/parameters/cat.health___query.ts'
@@ -858,6 +868,7 @@ paths:
         - $ref: '#/components/parameters/cat.indices___query.health'
         - $ref: '#/components/parameters/cat.indices___query.help'
         - $ref: '#/components/parameters/cat.indices___query.include_unloaded_segments'
+        - $ref: '#/components/parameters/cat.indices___query.limit'
         - $ref: '#/components/parameters/cat.indices___query.local'
         - $ref: '#/components/parameters/cat.indices___query.master_timeout'
         - $ref: '#/components/parameters/cat.indices___query.pri'
@@ -892,6 +903,7 @@ paths:
         - $ref: '#/components/parameters/cat.indices___query.health'
         - $ref: '#/components/parameters/cat.indices___query.help'
         - $ref: '#/components/parameters/cat.indices___query.include_unloaded_segments'
+        - $ref: '#/components/parameters/cat.indices___query.limit'
         - $ref: '#/components/parameters/cat.indices___query.local'
         - $ref: '#/components/parameters/cat.indices___query.master_timeout'
         - $ref: '#/components/parameters/cat.indices___query.pri'
@@ -924,6 +936,7 @@ paths:
         - $ref: '#/components/parameters/cat.master___query.format'
         - $ref: '#/components/parameters/cat.master___query.h'
         - $ref: '#/components/parameters/cat.master___query.help'
+        - $ref: '#/components/parameters/cat.master___query.limit'
         - $ref: '#/components/parameters/cat.master___query.local'
         - $ref: '#/components/parameters/cat.master___query.master_timeout'
         - $ref: '#/components/parameters/cat.master___query.s'
@@ -951,6 +964,7 @@ paths:
         - $ref: '#/components/parameters/cat.nodeattrs___query.format'
         - $ref: '#/components/parameters/cat.nodeattrs___query.h'
         - $ref: '#/components/parameters/cat.nodeattrs___query.help'
+        - $ref: '#/components/parameters/cat.nodeattrs___query.limit'
         - $ref: '#/components/parameters/cat.nodeattrs___query.local'
         - $ref: '#/components/parameters/cat.nodeattrs___query.master_timeout'
         - $ref: '#/components/parameters/cat.nodeattrs___query.s'
@@ -980,6 +994,7 @@ paths:
         - $ref: '#/components/parameters/cat.nodes___query.full_id'
         - $ref: '#/components/parameters/cat.nodes___query.h'
         - $ref: '#/components/parameters/cat.nodes___query.help'
+        - $ref: '#/components/parameters/cat.nodes___query.limit'
         - $ref: '#/components/parameters/cat.nodes___query.local'
         - $ref: '#/components/parameters/cat.nodes___query.master_timeout'
         - $ref: '#/components/parameters/cat.nodes___query.s'
@@ -1008,6 +1023,7 @@ paths:
         - $ref: '#/components/parameters/cat.pending_tasks___query.format'
         - $ref: '#/components/parameters/cat.pending_tasks___query.h'
         - $ref: '#/components/parameters/cat.pending_tasks___query.help'
+        - $ref: '#/components/parameters/cat.pending_tasks___query.limit'
         - $ref: '#/components/parameters/cat.pending_tasks___query.local'
         - $ref: '#/components/parameters/cat.pending_tasks___query.master_timeout'
         - $ref: '#/components/parameters/cat.pending_tasks___query.s'
@@ -1036,6 +1052,7 @@ paths:
         - $ref: '#/components/parameters/cat.pit_segments___query.format'
         - $ref: '#/components/parameters/cat.pit_segments___query.h'
         - $ref: '#/components/parameters/cat.pit_segments___query.help'
+        - $ref: '#/components/parameters/cat.pit_segments___query.limit'
         - $ref: '#/components/parameters/cat.pit_segments___query.s'
         - $ref: '#/components/parameters/cat.pit_segments___query.v'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -1063,6 +1080,7 @@ paths:
         - $ref: '#/components/parameters/cat.all_pit_segments___query.format'
         - $ref: '#/components/parameters/cat.all_pit_segments___query.h'
         - $ref: '#/components/parameters/cat.all_pit_segments___query.help'
+        - $ref: '#/components/parameters/cat.all_pit_segments___query.limit'
         - $ref: '#/components/parameters/cat.all_pit_segments___query.s'
         - $ref: '#/components/parameters/cat.all_pit_segments___query.v'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -1088,6 +1106,7 @@ paths:
         - $ref: '#/components/parameters/cat.plugins___query.format'
         - $ref: '#/components/parameters/cat.plugins___query.h'
         - $ref: '#/components/parameters/cat.plugins___query.help'
+        - $ref: '#/components/parameters/cat.plugins___query.limit'
         - $ref: '#/components/parameters/cat.plugins___query.local'
         - $ref: '#/components/parameters/cat.plugins___query.master_timeout'
         - $ref: '#/components/parameters/cat.plugins___query.s'
@@ -1118,6 +1137,7 @@ paths:
         - $ref: '#/components/parameters/cat.recovery___query.h'
         - $ref: '#/components/parameters/cat.recovery___query.help'
         - $ref: '#/components/parameters/cat.recovery___query.index'
+        - $ref: '#/components/parameters/cat.recovery___query.limit'
         - $ref: '#/components/parameters/cat.recovery___query.s'
         - $ref: '#/components/parameters/cat.recovery___query.time'
         - $ref: '#/components/parameters/cat.recovery___query.v'
@@ -1148,6 +1168,7 @@ paths:
         - $ref: '#/components/parameters/cat.recovery___query.h'
         - $ref: '#/components/parameters/cat.recovery___query.help'
         - $ref: '#/components/parameters/cat.recovery___query.index'
+        - $ref: '#/components/parameters/cat.recovery___query.limit'
         - $ref: '#/components/parameters/cat.recovery___query.s'
         - $ref: '#/components/parameters/cat.recovery___query.time'
         - $ref: '#/components/parameters/cat.recovery___query.v'
@@ -1174,6 +1195,7 @@ paths:
         - $ref: '#/components/parameters/cat.repositories___query.format'
         - $ref: '#/components/parameters/cat.repositories___query.h'
         - $ref: '#/components/parameters/cat.repositories___query.help'
+        - $ref: '#/components/parameters/cat.repositories___query.limit'
         - $ref: '#/components/parameters/cat.repositories___query.local'
         - $ref: '#/components/parameters/cat.repositories___query.master_timeout'
         - $ref: '#/components/parameters/cat.repositories___query.s'
@@ -1211,6 +1233,7 @@ paths:
         - $ref: '#/components/parameters/cat.segment_replication___query.ignore_throttled'
         - $ref: '#/components/parameters/cat.segment_replication___query.ignore_unavailable'
         - $ref: '#/components/parameters/cat.segment_replication___query.index'
+        - $ref: '#/components/parameters/cat.segment_replication___query.limit'
         - $ref: '#/components/parameters/cat.segment_replication___query.s'
         - $ref: '#/components/parameters/cat.segment_replication___query.shards'
         - $ref: '#/components/parameters/cat.segment_replication___query.time'
@@ -1250,6 +1273,7 @@ paths:
         - $ref: '#/components/parameters/cat.segment_replication___query.ignore_throttled'
         - $ref: '#/components/parameters/cat.segment_replication___query.ignore_unavailable'
         - $ref: '#/components/parameters/cat.segment_replication___query.index'
+        - $ref: '#/components/parameters/cat.segment_replication___query.limit'
         - $ref: '#/components/parameters/cat.segment_replication___query.s'
         - $ref: '#/components/parameters/cat.segment_replication___query.shards'
         - $ref: '#/components/parameters/cat.segment_replication___query.time'
@@ -1279,6 +1303,7 @@ paths:
         - $ref: '#/components/parameters/cat.segments___query.format'
         - $ref: '#/components/parameters/cat.segments___query.h'
         - $ref: '#/components/parameters/cat.segments___query.help'
+        - $ref: '#/components/parameters/cat.segments___query.limit'
         - $ref: '#/components/parameters/cat.segments___query.master_timeout'
         - $ref: '#/components/parameters/cat.segments___query.s'
         - $ref: '#/components/parameters/cat.segments___query.v'
@@ -1307,6 +1332,7 @@ paths:
         - $ref: '#/components/parameters/cat.segments___query.format'
         - $ref: '#/components/parameters/cat.segments___query.h'
         - $ref: '#/components/parameters/cat.segments___query.help'
+        - $ref: '#/components/parameters/cat.segments___query.limit'
         - $ref: '#/components/parameters/cat.segments___query.master_timeout'
         - $ref: '#/components/parameters/cat.segments___query.s'
         - $ref: '#/components/parameters/cat.segments___query.v'
@@ -1334,6 +1360,7 @@ paths:
         - $ref: '#/components/parameters/cat.shards___query.format'
         - $ref: '#/components/parameters/cat.shards___query.h'
         - $ref: '#/components/parameters/cat.shards___query.help'
+        - $ref: '#/components/parameters/cat.shards___query.limit'
         - $ref: '#/components/parameters/cat.shards___query.local'
         - $ref: '#/components/parameters/cat.shards___query.master_timeout'
         - $ref: '#/components/parameters/cat.shards___query.s'
@@ -1364,6 +1391,7 @@ paths:
         - $ref: '#/components/parameters/cat.shards___query.format'
         - $ref: '#/components/parameters/cat.shards___query.h'
         - $ref: '#/components/parameters/cat.shards___query.help'
+        - $ref: '#/components/parameters/cat.shards___query.limit'
         - $ref: '#/components/parameters/cat.shards___query.local'
         - $ref: '#/components/parameters/cat.shards___query.master_timeout'
         - $ref: '#/components/parameters/cat.shards___query.s'
@@ -1393,6 +1421,7 @@ paths:
         - $ref: '#/components/parameters/cat.snapshots___query.h'
         - $ref: '#/components/parameters/cat.snapshots___query.help'
         - $ref: '#/components/parameters/cat.snapshots___query.ignore_unavailable'
+        - $ref: '#/components/parameters/cat.snapshots___query.limit'
         - $ref: '#/components/parameters/cat.snapshots___query.master_timeout'
         - $ref: '#/components/parameters/cat.snapshots___query.repository'
         - $ref: '#/components/parameters/cat.snapshots___query.s'
@@ -1423,6 +1452,7 @@ paths:
         - $ref: '#/components/parameters/cat.snapshots___query.h'
         - $ref: '#/components/parameters/cat.snapshots___query.help'
         - $ref: '#/components/parameters/cat.snapshots___query.ignore_unavailable'
+        - $ref: '#/components/parameters/cat.snapshots___query.limit'
         - $ref: '#/components/parameters/cat.snapshots___query.master_timeout'
         - $ref: '#/components/parameters/cat.snapshots___query.repository'
         - $ref: '#/components/parameters/cat.snapshots___query.s'
@@ -1452,6 +1482,7 @@ paths:
         - $ref: '#/components/parameters/cat.tasks___query.format'
         - $ref: '#/components/parameters/cat.tasks___query.h'
         - $ref: '#/components/parameters/cat.tasks___query.help'
+        - $ref: '#/components/parameters/cat.tasks___query.limit'
         - $ref: '#/components/parameters/cat.tasks___query.nodes'
         - $ref: '#/components/parameters/cat.tasks___query.parent_task_id'
         - $ref: '#/components/parameters/cat.tasks___query.s'
@@ -1480,6 +1511,7 @@ paths:
         - $ref: '#/components/parameters/cat.templates___query.format'
         - $ref: '#/components/parameters/cat.templates___query.h'
         - $ref: '#/components/parameters/cat.templates___query.help'
+        - $ref: '#/components/parameters/cat.templates___query.limit'
         - $ref: '#/components/parameters/cat.templates___query.local'
         - $ref: '#/components/parameters/cat.templates___query.master_timeout'
         - $ref: '#/components/parameters/cat.templates___query.s'
@@ -1508,6 +1540,7 @@ paths:
         - $ref: '#/components/parameters/cat.templates___query.format'
         - $ref: '#/components/parameters/cat.templates___query.h'
         - $ref: '#/components/parameters/cat.templates___query.help'
+        - $ref: '#/components/parameters/cat.templates___query.limit'
         - $ref: '#/components/parameters/cat.templates___query.local'
         - $ref: '#/components/parameters/cat.templates___query.master_timeout'
         - $ref: '#/components/parameters/cat.templates___query.s'
@@ -1537,6 +1570,7 @@ paths:
         - $ref: '#/components/parameters/cat.thread_pool___query.format'
         - $ref: '#/components/parameters/cat.thread_pool___query.h'
         - $ref: '#/components/parameters/cat.thread_pool___query.help'
+        - $ref: '#/components/parameters/cat.thread_pool___query.limit'
         - $ref: '#/components/parameters/cat.thread_pool___query.local'
         - $ref: '#/components/parameters/cat.thread_pool___query.master_timeout'
         - $ref: '#/components/parameters/cat.thread_pool___query.s'
@@ -1568,6 +1602,7 @@ paths:
         - $ref: '#/components/parameters/cat.thread_pool___query.format'
         - $ref: '#/components/parameters/cat.thread_pool___query.h'
         - $ref: '#/components/parameters/cat.thread_pool___query.help'
+        - $ref: '#/components/parameters/cat.thread_pool___query.limit'
         - $ref: '#/components/parameters/cat.thread_pool___query.local'
         - $ref: '#/components/parameters/cat.thread_pool___query.master_timeout'
         - $ref: '#/components/parameters/cat.thread_pool___query.s'
@@ -20163,6 +20198,15 @@ components:
         description: Returns help information.
         type: boolean
         default: false
+    cat.aliases___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.aliases___query.local:
       name: local
       in: query
@@ -20221,6 +20265,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.all_pit_segments___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.all_pit_segments___query.s:
       name: s
       in: query
@@ -20287,6 +20340,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.allocation___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.allocation___query.local:
       name: local
       in: query
@@ -20355,6 +20417,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.cluster_manager___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.cluster_manager___query.local:
       name: local
       in: query
@@ -20426,6 +20497,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.count___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.count___query.s:
       name: s
       in: query
@@ -20494,6 +20574,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.fielddata___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.fielddata___query.s:
       name: s
       in: query
@@ -20538,6 +20627,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.health___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.health___query.s:
       name: s
       in: query
@@ -20642,6 +20740,15 @@ components:
         type: boolean
         default: false
       style: form
+    cat.indices___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.indices___query.local:
       name: local
       in: query
@@ -20725,6 +20832,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.master___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.master___query.local:
       name: local
       in: query
@@ -20793,6 +20909,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.nodeattrs___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.nodeattrs___query.local:
       name: local
       in: query
@@ -20876,6 +21001,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.nodes___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.nodes___query.local:
       name: local
       in: query
@@ -20953,6 +21087,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.pending_tasks___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.pending_tasks___query.local:
       name: local
       in: query
@@ -21026,6 +21169,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.pit_segments___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.pit_segments___query.s:
       name: s
       in: query
@@ -21077,6 +21229,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.plugins___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.plugins___query.local:
       name: local
       in: query
@@ -21186,6 +21347,15 @@ components:
           A comma-separated list of data streams, indexes, and aliases used to limit the request.
           Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       explode: true
+    cat.recovery___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.recovery___query.s:
       name: s
       in: query
@@ -21243,6 +21413,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.repositories___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.repositories___query.local:
       name: local
       in: query
@@ -21390,6 +21569,15 @@ components:
           A comma-separated list of data streams, indexes, and aliases used to limit the request.
           Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       explode: true
+    cat.segment_replication___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.segment_replication___query.s:
       name: s
       in: query
@@ -21482,6 +21670,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.segments___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.segments___query.master_timeout:
       name: master_timeout
       in: query
@@ -21556,6 +21753,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.shards___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.shards___query.local:
       name: local
       in: query
@@ -21649,6 +21855,15 @@ components:
         type: boolean
         default: false
       style: form
+    cat.snapshots___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.snapshots___query.master_timeout:
       name: master_timeout
       in: query
@@ -21736,6 +21951,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.tasks___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.tasks___query.nodes:
       name: nodes
       in: query
@@ -21824,6 +22048,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.templates___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.templates___query.local:
       name: local
       in: query
@@ -21902,6 +22135,15 @@ components:
         type: boolean
         default: false
         description: Returns help information.
+    cat.thread_pool___query.limit:
+      name: limit
+      in: query
+      description: The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      x-version-added: '3.10'
     cat.thread_pool___query.local:
       name: local
       in: query
@@ -74192,6 +74434,11 @@ components:
         index:
           $ref: '#/components/schemas/_common___IndexName'
           description: The name of the index containing the failed shard.
+        index_uuid:
+          type: string
+          description: |-
+            The name of the index containing the failed shard. Despite the field name, the server writes
+            the index name here rather than a UUID, so the value matches `index`.
         node_id:
           $ref: '#/components/schemas/_common___Id'
           description: The ID of the node where the shard failure occurred.
@@ -74199,7 +74446,8 @@ components:
           type: string
           description: The reason for the shard failure.
         shard_id:
-          $ref: '#/components/schemas/_common___Id'
+          type: integer
+          format: int32
           description: The ID of the failed shard.
         status:
           type: string
