@@ -5564,6 +5564,7 @@ paths:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#add-policy
       parameters:
         - $ref: '#/components/parameters/ism.add_policy___query.index'
+        - $ref: '#/components/parameters/ism.add_policy___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -5586,6 +5587,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ism.add_policy___path.index'
         - $ref: '#/components/parameters/ism.add_policy___query.index'
+        - $ref: '#/components/parameters/ism.add_policy___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -5607,6 +5609,7 @@ paths:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#update-managed-index-policy
       parameters:
         - $ref: '#/components/parameters/ism.change_policy___query.index'
+        - $ref: '#/components/parameters/ism.change_policy___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -5629,6 +5632,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ism.change_policy___path.index'
         - $ref: '#/components/parameters/ism.change_policy___query.index'
+        - $ref: '#/components/parameters/ism.change_policy___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -5728,15 +5732,20 @@ paths:
       description: Retrieves the policies.
       externalDocs:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#get-policy
-      responses:
-        '200':
-          $ref: '#/components/responses/ism.get_policies___200'
       parameters:
+        - $ref: '#/components/parameters/ism.get_policies___query.from'
+        - $ref: '#/components/parameters/ism.get_policies___query.queryString'
+        - $ref: '#/components/parameters/ism.get_policies___query.size'
+        - $ref: '#/components/parameters/ism.get_policies___query.sortField'
+        - $ref: '#/components/parameters/ism.get_policies___query.sortOrder'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.get_policies___200'
     put:
       operationId: ism.put_policies.0
       x-operation-group: ism.put_policies
@@ -5751,6 +5760,7 @@ paths:
         - $ref: '#/components/parameters/ism.put_policies___query.if_primary_term'
         - $ref: '#/components/parameters/ism.put_policies___query.if_seq_no'
         - $ref: '#/components/parameters/ism.put_policies___query.policyID'
+        - $ref: '#/components/parameters/ism.put_policies___query.refresh'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -5759,6 +5769,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ism.put_policies___200'
+        '201':
+          $ref: '#/components/responses/ism.put_policies___201'
   /_plugins/_ism/policies/{policy_id}:
     delete:
       operationId: ism.delete_policy.0
@@ -5770,6 +5782,7 @@ paths:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#delete-policy
       parameters:
         - $ref: '#/components/parameters/ism.delete_policy___path.policy_id'
+        - $ref: '#/components/parameters/ism.delete_policy___query.refresh'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -5828,6 +5841,7 @@ paths:
         - $ref: '#/components/parameters/ism.put_policy___path.policy_id'
         - $ref: '#/components/parameters/ism.put_policy___query.if_primary_term'
         - $ref: '#/components/parameters/ism.put_policy___query.if_seq_no'
+        - $ref: '#/components/parameters/ism.put_policy___query.refresh'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -5851,6 +5865,7 @@ paths:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#remove-policy-from-index
       parameters:
         - $ref: '#/components/parameters/ism.remove_policy___query.index'
+        - $ref: '#/components/parameters/ism.remove_policy___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -5871,6 +5886,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ism.remove_policy___path.index'
         - $ref: '#/components/parameters/ism.remove_policy___query.index'
+        - $ref: '#/components/parameters/ism.remove_policy___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -5889,7 +5905,10 @@ paths:
       externalDocs:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#retry-failed-index
       parameters:
+        - $ref: '#/components/parameters/ism.retry_index___query.cluster_manager_timeout'
         - $ref: '#/components/parameters/ism.retry_index___query.index'
+        - $ref: '#/components/parameters/ism.retry_index___query.master_timeout'
+        - $ref: '#/components/parameters/ism.retry_index___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -5911,7 +5930,10 @@ paths:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#retry-failed-index
       parameters:
         - $ref: '#/components/parameters/ism.retry_index___path.index'
+        - $ref: '#/components/parameters/ism.retry_index___query.cluster_manager_timeout'
         - $ref: '#/components/parameters/ism.retry_index___query.index'
+        - $ref: '#/components/parameters/ism.retry_index___query.master_timeout'
+        - $ref: '#/components/parameters/ism.retry_index___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -9051,6 +9073,7 @@ paths:
         - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_individual_nodes'
         - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_info'
         - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_metadata'
+        - $ref: '#/components/parameters/search_relevance.get_node_stats___query.timeout'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -9075,6 +9098,7 @@ paths:
         - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_individual_nodes'
         - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_info'
         - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_metadata'
+        - $ref: '#/components/parameters/search_relevance.get_node_stats___query.timeout'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -9091,15 +9115,16 @@ paths:
         - Search Relevance
       x-version-added: '3.1'
       description: Gets experiments.
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_experiments___200'
       parameters:
+        - $ref: '#/components/parameters/search_relevance.get_experiments___query.query_text'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.get_experiments___200'
     put:
       operationId: search_relevance.put_experiments.0
       x-operation-group: search_relevance.put_experiments
@@ -9182,6 +9207,7 @@ paths:
       description: Gets experiments.
       parameters:
         - $ref: '#/components/parameters/search_relevance.get_experiments___path.experiment_id'
+        - $ref: '#/components/parameters/search_relevance.get_experiments___query.query_text'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -9207,6 +9233,22 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/search_relevance.patch_experiment___200'
+  /_plugins/_search_relevance/experiments/{experiment_id}/validate:
+    get:
+      operationId: search_relevance.validate_experiments.0
+      x-operation-group: search_relevance.validate_experiments
+      x-version-added: '3.8'
+      description: Validates whether an experiment's inputs have drifted from the fingerprint recorded at execution time.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.validate_experiments___path.experiment_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.validate_experiments___200'
   /_plugins/_search_relevance/experiments/schedule:
     get:
       operationId: search_relevance.get_scheduled_experiments.0
@@ -9385,6 +9427,43 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/search_relevance.get_judgments___200'
+    put:
+      operationId: search_relevance.update_judgment_ratings.0
+      x-operation-group: search_relevance.update_judgment_ratings
+      x-version-added: '3.9'
+      description: Adjusts one or more ratings on an existing LLM judgment in place. Only the listed (`query`, `docId`) pairs are updated; all other ratings are left unchanged.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.update_judgment_ratings___path.judgment_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/search_relevance.update_judgment_ratings'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.update_judgment_ratings___200'
+        '404':
+          $ref: '#/components/responses/search_relevance.update_judgment_ratings___404'
+  /_plugins/_search_relevance/judgments/{judgment_id}/_retry:
+    post:
+      operationId: search_relevance.retry_judgments.0
+      x-operation-group: search_relevance.retry_judgments
+      x-version-added: '3.9'
+      description: Retries the failed documents in an existing LLM judgment.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.retry_judgments___path.judgment_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.retry_judgments___200'
+        '400':
+          $ref: '#/components/responses/search_relevance.retry_judgments___400'
   /_plugins/_search_relevance/query_sets:
     get:
       operationId: search_relevance.get_query_sets.0
@@ -9631,6 +9710,7 @@ paths:
         - $ref: '#/components/parameters/search_relevance.get_stats___query.include_individual_nodes'
         - $ref: '#/components/parameters/search_relevance.get_stats___query.include_info'
         - $ref: '#/components/parameters/search_relevance.get_stats___query.include_metadata'
+        - $ref: '#/components/parameters/search_relevance.get_stats___query.timeout'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -9654,6 +9734,7 @@ paths:
         - $ref: '#/components/parameters/search_relevance.get_stats___query.include_individual_nodes'
         - $ref: '#/components/parameters/search_relevance.get_stats___query.include_info'
         - $ref: '#/components/parameters/search_relevance.get_stats___query.include_metadata'
+        - $ref: '#/components/parameters/search_relevance.get_stats___query.timeout'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -17497,6 +17578,7 @@ paths:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#add-policy
       parameters:
         - $ref: '#/components/parameters/ism.add_policy___query.index'
+        - $ref: '#/components/parameters/ism.add_policy___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -17521,6 +17603,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ism.add_policy___path.index'
         - $ref: '#/components/parameters/ism.add_policy___query.index'
+        - $ref: '#/components/parameters/ism.add_policy___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -17544,6 +17627,7 @@ paths:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#update-managed-index-policy
       parameters:
         - $ref: '#/components/parameters/ism.change_policy___query.index'
+        - $ref: '#/components/parameters/ism.change_policy___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -17568,6 +17652,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ism.change_policy___path.index'
         - $ref: '#/components/parameters/ism.change_policy___query.index'
+        - $ref: '#/components/parameters/ism.change_policy___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -17677,15 +17762,20 @@ paths:
       description: Retrieves the policies.
       externalDocs:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#get-policy
-      responses:
-        '200':
-          $ref: '#/components/responses/ism.get_policies___200'
       parameters:
+        - $ref: '#/components/parameters/ism.get_policies___query.from'
+        - $ref: '#/components/parameters/ism.get_policies___query.queryString'
+        - $ref: '#/components/parameters/ism.get_policies___query.size'
+        - $ref: '#/components/parameters/ism.get_policies___query.sortField'
+        - $ref: '#/components/parameters/ism.get_policies___query.sortOrder'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.get_policies___200'
       deprecated: true
       x-ignorable: true
     put:
@@ -17702,6 +17792,7 @@ paths:
         - $ref: '#/components/parameters/ism.put_policies___query.if_primary_term'
         - $ref: '#/components/parameters/ism.put_policies___query.if_seq_no'
         - $ref: '#/components/parameters/ism.put_policies___query.policyID'
+        - $ref: '#/components/parameters/ism.put_policies___query.refresh'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -17710,6 +17801,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ism.put_policies___200'
+        '201':
+          $ref: '#/components/responses/ism.put_policies___201'
       deprecated: true
       x-ignorable: true
   /_opendistro/_ism/policies/{policy_id}:
@@ -17767,6 +17860,7 @@ paths:
         - $ref: '#/components/parameters/ism.put_policy___path.policy_id'
         - $ref: '#/components/parameters/ism.put_policy___query.if_primary_term'
         - $ref: '#/components/parameters/ism.put_policy___query.if_seq_no'
+        - $ref: '#/components/parameters/ism.put_policy___query.refresh'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -17791,6 +17885,7 @@ paths:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#delete-policy
       parameters:
         - $ref: '#/components/parameters/ism.delete_policy___path.policy_id'
+        - $ref: '#/components/parameters/ism.delete_policy___query.refresh'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -17812,6 +17907,7 @@ paths:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#remove-policy-from-index
       parameters:
         - $ref: '#/components/parameters/ism.remove_policy___query.index'
+        - $ref: '#/components/parameters/ism.remove_policy___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -17834,6 +17930,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ism.remove_policy___path.index'
         - $ref: '#/components/parameters/ism.remove_policy___query.index'
+        - $ref: '#/components/parameters/ism.remove_policy___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -17854,7 +17951,10 @@ paths:
       externalDocs:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#retry-failed-index
       parameters:
+        - $ref: '#/components/parameters/ism.retry_index___query.cluster_manager_timeout'
         - $ref: '#/components/parameters/ism.retry_index___query.index'
+        - $ref: '#/components/parameters/ism.retry_index___query.master_timeout'
+        - $ref: '#/components/parameters/ism.retry_index___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -17878,7 +17978,10 @@ paths:
         url: https://docs.opensearch.org/latest/im-plugin/ism/api/#retry-failed-index
       parameters:
         - $ref: '#/components/parameters/ism.retry_index___path.index'
+        - $ref: '#/components/parameters/ism.retry_index___query.cluster_manager_timeout'
         - $ref: '#/components/parameters/ism.retry_index___query.index'
+        - $ref: '#/components/parameters/ism.retry_index___query.master_timeout'
+        - $ref: '#/components/parameters/ism.retry_index___query.type'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -27169,9 +27272,18 @@ components:
     ism.add_policy___query.index:
       name: index
       in: query
-      required: true
+      description: Comma-separated list of indexes. Required when no index is given in the path; ignored when it is.
       schema:
         $ref: '#/components/schemas/_common___Indices'
+    ism.add_policy___query.type:
+      name: type
+      in: query
+      description: The type of the index metadata provider.
+      schema:
+        type: string
+        default: _default
+      style: form
+      x-version-added: '1.3'
     ism.change_policy___path.index:
       name: index
       in: path
@@ -27182,15 +27294,31 @@ components:
     ism.change_policy___query.index:
       name: index
       in: query
-      required: true
+      description: Comma-separated list of indexes. Required when no index is given in the path; ignored when it is.
       schema:
         $ref: '#/components/schemas/_common___Indices'
+    ism.change_policy___query.type:
+      name: type
+      in: query
+      description: The type of the index metadata provider.
+      schema:
+        type: string
+        default: _default
+      style: form
+      x-version-added: '1.3'
     ism.delete_policy___path.policy_id:
       name: policy_id
       in: path
       required: true
       schema:
         type: string
+    ism.delete_policy___query.refresh:
+      name: refresh
+      in: query
+      description: Whether to refresh the affected shards to make this operation visible to search. Default is `true`.
+      schema:
+        $ref: '#/components/schemas/_common___Refresh'
+      style: form
     ism.exists_policy___path.policy_id:
       name: policy_id
       in: path
@@ -27204,6 +27332,46 @@ components:
       schema:
         $ref: '#/components/schemas/_common___Indices'
       style: simple
+    ism.get_policies___query.from:
+      name: from
+      in: query
+      description: The starting index of the policies to return.
+      schema:
+        type: integer
+        default: 0
+      style: form
+    ism.get_policies___query.queryString:
+      name: queryString
+      in: query
+      description: A query string that filters the policies.
+      schema:
+        type: string
+        default: '*'
+      style: form
+    ism.get_policies___query.size:
+      name: size
+      in: query
+      description: The number of policies to return.
+      schema:
+        type: integer
+        default: 20
+      style: form
+    ism.get_policies___query.sortField:
+      name: sortField
+      in: query
+      description: The field to sort the policies by.
+      schema:
+        type: string
+        default: policy.policy_id.keyword
+      style: form
+    ism.get_policies___query.sortOrder:
+      name: sortOrder
+      in: query
+      description: The sort order of the policies.
+      schema:
+        $ref: '#/components/schemas/_common___SortOrder'
+        default: asc
+      style: form
     ism.get_policy___path.policy_id:
       name: policy_id
       in: path
@@ -27231,6 +27399,13 @@ components:
       schema:
         type: string
       style: form
+    ism.put_policies___query.refresh:
+      name: refresh
+      in: query
+      description: Whether to refresh the affected shards to make this operation visible to search. Default is `true`.
+      schema:
+        $ref: '#/components/schemas/_common___Refresh'
+      style: form
     ism.put_policy___path.policy_id:
       name: policy_id
       in: path
@@ -27251,6 +27426,13 @@ components:
       schema:
         $ref: '#/components/schemas/_common___SequenceNumber'
       style: form
+    ism.put_policy___query.refresh:
+      name: refresh
+      in: query
+      description: Whether to refresh the affected shards to make this operation visible to search. Default is `true`.
+      schema:
+        $ref: '#/components/schemas/_common___Refresh'
+      style: form
     ism.refresh_search_analyzers___path.index:
       name: index
       in: path
@@ -27268,9 +27450,18 @@ components:
     ism.remove_policy___query.index:
       name: index
       in: query
-      required: true
+      description: Comma-separated list of indexes. Required when no index is given in the path; ignored when it is.
       schema:
         $ref: '#/components/schemas/_common___Indices'
+    ism.remove_policy___query.type:
+      name: type
+      in: query
+      description: The type of the index metadata provider.
+      schema:
+        type: string
+        default: _default
+      style: form
+      x-version-added: '1.3'
     ism.retry_index___path.index:
       name: index
       in: path
@@ -27278,12 +27469,39 @@ components:
       schema:
         $ref: '#/components/schemas/_common___Indices'
       style: simple
+    ism.retry_index___query.cluster_manager_timeout:
+      name: cluster_manager_timeout
+      in: query
+      description: Operation timeout for connection to cluster-manager node.
+      schema:
+        $ref: '#/components/schemas/_common___Duration'
+      style: form
+      x-version-added: '2.3'
     ism.retry_index___query.index:
       name: index
       in: query
-      required: true
+      description: Comma-separated list of indexes. Required when no index is given in the path; ignored when it is.
       schema:
         $ref: '#/components/schemas/_common___Indices'
+    ism.retry_index___query.master_timeout:
+      name: master_timeout
+      in: query
+      description: Operation timeout for connection to cluster-manager node.
+      deprecated: true
+      schema:
+        $ref: '#/components/schemas/_common___Duration'
+      style: form
+      x-version-deprecated: '2.3'
+      x-deprecation-message: To promote inclusive language, use `cluster_manager_timeout` instead.
+    ism.retry_index___query.type:
+      name: type
+      in: query
+      description: The type of the index metadata provider.
+      schema:
+        type: string
+        default: _default
+      style: form
+      x-version-added: '1.3'
     knn.delete_model___path.model_id:
       name: model_id
       in: path
@@ -30319,6 +30537,13 @@ components:
       description: The experiment id
       schema:
         type: string
+    search_relevance.get_experiments___query.query_text:
+      name: query_text
+      in: query
+      required: false
+      description: A query text for visualizing experiment results. Accepted but currently does not change the response.
+      schema:
+        type: string
     search_relevance.get_judgments___path.judgment_id:
       name: judgment_id
       in: path
@@ -30337,7 +30562,7 @@ components:
       name: stat
       in: path
       required: true
-      description: The statistic to return
+      description: 'A comma-separated list of statistics to return. Valid values: `cluster_version`, `import_judgment_rating_generations`, `llm_judgment_rating_generations`, `ubi_judgment_rating_generations`, `experiment_executions`, `experiment_pairwise_comparison_executions`, `experiment_pointwise_evaluation_executions`, `experiment_hybrid_optimizer_executions`.'
       schema:
         type: string
     search_relevance.get_node_stats___query.flat_stat_paths:
@@ -30346,35 +30571,42 @@ components:
       required: false
       description: Requests flattened stat paths as keys
       schema:
-        type: string
+        type: boolean
     search_relevance.get_node_stats___query.include_all_nodes:
       name: include_all_nodes
       in: query
       required: false
       description: Whether to include all nodes
       schema:
-        type: string
+        type: boolean
     search_relevance.get_node_stats___query.include_individual_nodes:
       name: include_individual_nodes
       in: query
       required: false
       description: Whether to include individual nodes
       schema:
-        type: string
+        type: boolean
     search_relevance.get_node_stats___query.include_info:
       name: include_info
       in: query
       required: false
       description: Whether to include info
       schema:
-        type: string
+        type: boolean
     search_relevance.get_node_stats___query.include_metadata:
       name: include_metadata
       in: query
       required: false
       description: Whether to include metadata
       schema:
-        type: string
+        type: boolean
+    search_relevance.get_node_stats___query.timeout:
+      name: timeout
+      in: query
+      required: false
+      description: The amount of time to wait for a response.
+      schema:
+        $ref: '#/components/schemas/_common___Duration'
     search_relevance.get_query_sets___path.query_set_id:
       name: query_set_id
       in: path
@@ -30400,7 +30632,7 @@ components:
       name: stat
       in: path
       required: true
-      description: The statistic to return
+      description: 'A comma-separated list of statistics to return. Valid values: `cluster_version`, `import_judgment_rating_generations`, `llm_judgment_rating_generations`, `ubi_judgment_rating_generations`, `experiment_executions`, `experiment_pairwise_comparison_executions`, `experiment_pointwise_evaluation_executions`, `experiment_hybrid_optimizer_executions`.'
       schema:
         type: string
     search_relevance.get_stats___query.flat_stat_paths:
@@ -30409,40 +30641,68 @@ components:
       required: false
       description: Requests flattened stat paths as keys
       schema:
-        type: string
+        type: boolean
     search_relevance.get_stats___query.include_all_nodes:
       name: include_all_nodes
       in: query
       required: false
       description: Whether to include all nodes
       schema:
-        type: string
+        type: boolean
     search_relevance.get_stats___query.include_individual_nodes:
       name: include_individual_nodes
       in: query
       required: false
       description: Whether to include individual nodes
       schema:
-        type: string
+        type: boolean
     search_relevance.get_stats___query.include_info:
       name: include_info
       in: query
       required: false
       description: Whether to include info
       schema:
-        type: string
+        type: boolean
     search_relevance.get_stats___query.include_metadata:
       name: include_metadata
       in: query
       required: false
       description: Whether to include metadata
       schema:
-        type: string
+        type: boolean
+    search_relevance.get_stats___query.timeout:
+      name: timeout
+      in: query
+      required: false
+      description: The amount of time to wait for a response.
+      schema:
+        $ref: '#/components/schemas/_common___Duration'
     search_relevance.patch_experiment___path.experiment_id:
       name: experiment_id
       in: path
       required: true
       description: The experiment id.
+      schema:
+        type: string
+    search_relevance.retry_judgments___path.judgment_id:
+      name: judgment_id
+      in: path
+      required: true
+      description: The judgment id
+      schema:
+        type: string
+    search_relevance.update_judgment_ratings___path.judgment_id:
+      name: judgment_id
+      in: path
+      required: true
+      description: The judgment id
+      schema:
+        type: string
+    search_relevance.validate_experiments___path.experiment_id:
+      name: experiment_id
+      in: path
+      required: true
+      description: The experiment id
       schema:
         type: string
     search_shards___path.index:
@@ -35209,7 +35469,9 @@ components:
       content:
         application/json:
           schema:
-            anyOf:
+            discriminator:
+              propertyName: type
+            oneOf:
               - $ref: '#/components/schemas/search_relevance._common___PutHybridOptimizerExperimentRequest'
               - $ref: '#/components/schemas/search_relevance._common___PutPointwiseExperimentRequest'
               - $ref: '#/components/schemas/search_relevance._common___PutPairwiseExperimentRequest'
@@ -35217,6 +35479,8 @@ components:
       content:
         application/json:
           schema:
+            discriminator:
+              propertyName: type
             oneOf:
               - $ref: '#/components/schemas/search_relevance._common___PutLLMJudgmentsRequest'
               - $ref: '#/components/schemas/search_relevance._common___PutUBIJudgmentsRequest'
@@ -35241,6 +35505,11 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/search_relevance._common___SearchRequest'
+    search_relevance.update_judgment_ratings:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/search_relevance._common___UpdateJudgmentRatingsRequest'
     search_shards:
       content:
         application/json:
@@ -37782,6 +38051,12 @@ components:
           schema:
             $ref: '#/components/schemas/ism._common___PutPolicyResponse'
       description: ''
+    ism.put_policies___201:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common___PutPolicyResponse'
+      description: ''
     ism.put_policy___200:
       content:
         application/json:
@@ -39676,11 +39951,41 @@ components:
           schema:
             $ref: '#/components/schemas/_core.search___SearchResult'
       description: ''
+    search_relevance.retry_judgments___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/search_relevance._common___RetryJudgmentsResponse'
+      description: ''
+    search_relevance.retry_judgments___400:
+      description: The judgment is not an LLM judgment, or has no failed documents to retry.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     search_relevance.search_configurations_search___200:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_core.search___SearchResult'
+      description: ''
+    search_relevance.update_judgment_ratings___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/search_relevance._common___UpdateJudgmentRatingsResponse'
+      description: ''
+    search_relevance.update_judgment_ratings___404:
+      description: The judgment does not exist, or a listed query is not part of the judgment.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+    search_relevance.validate_experiments___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/search_relevance._common___ValidateExperimentResponse'
       description: ''
     search_shards___200:
       content:
@@ -65270,9 +65575,7 @@ components:
       properties:
         state:
           type: string
-          description: The state to retry.
-      required:
-        - state
+          description: The state to transition to before retrying. If omitted, the failed action is retried.
     ism._common___RetryIndexResponse:
       $ref: '#/components/schemas/ism._common___ChangeResponse'
     ism._common___SlackCustomWebhook:
@@ -72702,6 +73005,47 @@ components:
           format: int32
         context_prefix:
           type: string
+    search_relevance._common___DocumentRatingUpdate:
+      type: object
+      description: A single document rating to update.
+      properties:
+        docId:
+          type: string
+          description: The document id whose rating is being updated.
+        rating:
+          type: string
+          description: The new rating value.
+      required:
+        - docId
+        - rating
+    search_relevance._common___ExperimentValidationStatus:
+      type: string
+      description: The drift status of an experiment's inputs.
+      enum:
+        - DRIFTED
+        - UNAVAILABLE
+        - VALID
+    search_relevance._common___JudgmentRatingUpdate:
+      type: object
+      description: The ratings to update for a single query.
+      properties:
+        query:
+          type: string
+          description: The query text whose ratings are being updated.
+        ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/search_relevance._common___DocumentRatingUpdate'
+      required:
+        - query
+        - ratings
+    search_relevance._common___LLMJudgmentRatingType:
+      type: string
+      description: The rating scale used by the LLM judge. Defaults to `SCORE0_1`.
+      enum:
+        - RELEVANT_IRRELEVANT
+        - SCORE0_1
+      x-version-added: '3.5'
     search_relevance._common___PatchExperimentRequest:
       type: object
       description: Partially updates an experiment's name or description.
@@ -72734,6 +73078,10 @@ components:
           type: integer
         ubiQueriesIndex:
           type: string
+          description: The name of the UBI queries index to sample from.
+          x-version-added: '3.5'
+      required:
+        - name
     search_relevance._common___PostQuerySetsResponse:
       type: object
       properties:
@@ -72749,6 +73097,9 @@ components:
           type: string
         cronExpression:
           type: string
+      required:
+        - cronExpression
+        - experimentId
     search_relevance._common___PostScheduledExperimentsResponse:
       type: object
       properties:
@@ -72756,6 +73107,22 @@ components:
           type: string
         job_result:
           type: string
+    search_relevance._common___PutExperimentRequestBase:
+      type: object
+      description: The common fields shared by all experiment creation requests.
+      properties:
+        querySetId:
+          type: string
+        searchConfigurationList:
+          type: array
+          items:
+            type: string
+        size:
+          type: integer
+      required:
+        - querySetId
+        - searchConfigurationList
+        - size
     search_relevance._common___PutExperimentResponse:
       type: object
       properties:
@@ -72764,100 +73131,133 @@ components:
         experiment_result:
           type: string
     search_relevance._common___PutHybridOptimizerExperimentRequest:
-      type: object
       description: The schema for a hybrid optimizer experiment.
-      properties:
-        querySetId:
-          type: string
-        searchConfigurationList:
-          type: array
-          items:
-            type: string
-        judgmentList:
-          type: array
-          items:
-            type: string
-        size:
-          type: integer
-        type:
-          type: string
+      allOf:
+        - $ref: '#/components/schemas/search_relevance._common___PutExperimentRequestBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - HYBRID_OPTIMIZER
+            judgmentList:
+              type: array
+              items:
+                type: string
+          required:
+            - type
     search_relevance._common___PutImportJudgmentsRequest:
-      type: object
       description: The schema for an import judgment.
+      allOf:
+        - $ref: '#/components/schemas/search_relevance._common___PutJudgmentsRequestBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - IMPORT_JUDGMENT
+            judgmentRatings:
+              type: array
+              items:
+                type: object
+          required:
+            - judgmentRatings
+            - type
+    search_relevance._common___PutJudgmentsRequestBase:
+      type: object
+      description: The common fields shared by all judgment creation requests.
       properties:
         name:
           type: string
         description:
           type: string
-        type:
-          type: string
-        judgmentRatings:
-          type: array
-          items:
-            type: object
+      required:
+        - name
     search_relevance._common___PutJudgmentsResponse:
       type: object
       properties:
         judgment_id:
           type: string
     search_relevance._common___PutLLMJudgmentsRequest:
-      type: object
       description: The schema for a LLM judgment.
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-        modelId:
-          type: string
-        querySetId:
-          type: string
-        searchConfigurationList:
-          type: array
-          items:
-            type: string
-        size:
-          type: integer
-        ignoreFailure:
-          type: boolean
-        contextFields:
-          type: array
-          items:
-            type: string
+      allOf:
+        - $ref: '#/components/schemas/search_relevance._common___PutJudgmentsRequestBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - LLM_JUDGMENT
+            modelId:
+              type: string
+            querySetId:
+              type: string
+            searchConfigurationList:
+              type: array
+              items:
+                type: string
+            size:
+              type: integer
+            ignoreFailure:
+              type: boolean
+              description: Whether to continue when individual documents fail to be rated. Defaults to `false`.
+            contextFields:
+              type: array
+              items:
+                type: string
+            tokenLimit:
+              type: integer
+              description: The maximum number of tokens allowed for the LLM prompt. Defaults to 4000.
+            promptTemplate:
+              type: string
+              description: The prompt template to use. Must contain a `{{hits}}` or `{{results}}` placeholder and a `{{queryText}}` or `{{searchText}}` placeholder. A default template is used when omitted.
+              x-version-added: '3.5'
+            llmJudgmentRatingType:
+              $ref: '#/components/schemas/search_relevance._common___LLMJudgmentRatingType'
+            existingJudgments:
+              type: array
+              description: A list of existing judgment ids whose ratings should be reused instead of being re-scored.
+              items:
+                type: string
+              x-version-added: '3.9'
+            overwriteCache:
+              type: boolean
+              deprecated: true
+              x-version-added: '3.5'
+              x-version-deprecated: '3.9'
+              description: Deprecated and ignored. The global judgment cache was removed; use `existingJudgments` to reuse ratings or the `_retry` endpoint to re-score failed documents.
+          required:
+            - modelId
+            - querySetId
+            - type
     search_relevance._common___PutPairwiseExperimentRequest:
-      type: object
       description: The schema for a pairwise experiment.
-      properties:
-        querySetId:
-          type: string
-        searchConfigurationList:
-          type: array
-          items:
-            type: string
-        size:
-          type: integer
-        type:
-          type: string
+      allOf:
+        - $ref: '#/components/schemas/search_relevance._common___PutExperimentRequestBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - PAIRWISE_COMPARISON
+          required:
+            - type
     search_relevance._common___PutPointwiseExperimentRequest:
-      type: object
       description: The schema for a pointwise experiment.
-      properties:
-        querySetId:
-          type: string
-        searchConfigurationList:
-          type: array
-          items:
-            type: string
-        judgmentList:
-          type: array
-          items:
-            type: string
-        size:
-          type: integer
-        type:
-          type: string
+      allOf:
+        - $ref: '#/components/schemas/search_relevance._common___PutExperimentRequestBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - POINTWISE_EVALUATION
+            judgmentList:
+              type: array
+              items:
+                type: string
+          required:
+            - type
     search_relevance._common___PutQuerySetsRequest:
       type: object
       description: The schema for updating a query set.
@@ -72872,6 +73272,8 @@ components:
           type: array
           items:
             type: object
+      required:
+        - name
     search_relevance._common___PutQuerySetsResponse:
       type: object
       properties:
@@ -72893,6 +73295,8 @@ components:
           type: string
         searchPipeline:
           type: string
+      required:
+        - name
     search_relevance._common___PutSearchConfigurationResponse:
       type: object
       properties:
@@ -72901,19 +73305,44 @@ components:
         search_configuration_result:
           type: string
     search_relevance._common___PutUBIJudgmentsRequest:
-      type: object
       description: The schema for a UBI judgment.
+      allOf:
+        - $ref: '#/components/schemas/search_relevance._common___PutJudgmentsRequestBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - UBI_JUDGMENT
+            clickModel:
+              type: string
+            maxRank:
+              type: integer
+            startDate:
+              type: string
+              description: The start of the UBI events date range (inclusive).
+              x-version-added: '3.2'
+            endDate:
+              type: string
+              description: The end of the UBI events date range (inclusive).
+              x-version-added: '3.2'
+            ubiEventsIndex:
+              type: string
+              description: The name of the UBI events index to source click data from.
+              x-version-added: '3.5'
+          required:
+            - clickModel
+            - maxRank
+            - type
+    search_relevance._common___RetryJudgmentsResponse:
+      type: object
       properties:
-        name:
+        judgment_id:
           type: string
-        description:
+        status:
           type: string
-        type:
+        message:
           type: string
-        clickModel:
-          type: string
-        maxRank:
-          type: integer
     search_relevance._common___SearchRequest:
       type: object
       description: A search request body delegated to SearchSourceBuilder.
@@ -72931,6 +73360,42 @@ components:
         sort:
           $ref: '#/components/schemas/_common___Sort'
           description: The sort order.
+    search_relevance._common___UpdateJudgmentRatingsRequest:
+      type: object
+      description: The schema for adjusting ratings on an existing LLM judgment in place.
+      properties:
+        judgmentRatings:
+          type: array
+          description: The ratings to update, grouped by query. Only the listed (`query`, `docId`) pairs are updated.
+          items:
+            $ref: '#/components/schemas/search_relevance._common___JudgmentRatingUpdate'
+      required:
+        - judgmentRatings
+    search_relevance._common___UpdateJudgmentRatingsResponse:
+      type: object
+      properties:
+        judgment_id:
+          type: string
+        result:
+          type: string
+    search_relevance._common___ValidateExperimentResponse:
+      type: object
+      description: Describes whether an experiment's inputs have drifted from the fingerprint recorded at execution time.
+      properties:
+        status:
+          $ref: '#/components/schemas/search_relevance._common___ExperimentValidationStatus'
+        drifted_inputs:
+          type: array
+          description: The list of inputs that have drifted.
+          items:
+            type: string
+        message:
+          type: string
+          description: A human-readable message describing the validation result.
+      required:
+        - drifted_inputs
+        - message
+        - status
     security_analytics.alerts___ActionExecutionResult:
       type: object
       properties:
