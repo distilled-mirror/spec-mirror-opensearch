@@ -65835,7 +65835,7 @@ components:
           type: number
           description: The priority of the ISM template.
         last_updated_time:
-          type: integer
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
           description: When the ISM template was last updated.
     ism._common___Metadata:
       type: object
@@ -65860,7 +65860,7 @@ components:
           type: string
           description: The description of the policy.
         last_updated_time:
-          type: integer
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
           description: When the policy was last updated.
         schema_version:
           type: number
