@@ -3159,6 +3159,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ingest.put_pipeline___200'
+        '400':
+          $ref: '#/components/responses/ingest.put_pipeline___400'
   /_ingest/pipeline/{id}/_simulate:
     get:
       operationId: ingest.simulate.2
@@ -27568,7 +27570,8 @@ components:
       in: query
       description: Only perform the operation if the document has this primary term.
       schema:
-        type: number
+        type: integer
+        format: int64
       style: form
     ism.put_policies___query.if_seq_no:
       name: if_seq_no
@@ -27602,7 +27605,8 @@ components:
       in: query
       description: Only perform the operation if the document has this primary term.
       schema:
-        type: number
+        type: integer
+        format: int64
       style: form
     ism.put_policy___query.if_seq_no:
       name: if_seq_no
@@ -34172,11 +34176,13 @@ components:
           schema:
             $ref: '#/components/schemas/ingestion._common___ResumeIngestionRequest'
     ism.add_policy:
+      required: true
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ism._common___AddPolicyRequest'
     ism.change_policy:
+      required: true
       content:
         application/json:
           schema:
@@ -34188,11 +34194,13 @@ components:
           schema:
             $ref: '#/components/schemas/ism._common___ExplainPolicyRequest'
     ism.put_policies:
+      required: true
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ism._common___PutPolicyRequest'
     ism.put_policy:
+      required: true
       content:
         application/json:
           schema:
@@ -38149,6 +38157,12 @@ components:
           schema:
             $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
       description: ''
+    ingest.put_pipeline___400:
+      description: Bad request error when the pipeline configuration is invalid (for example, a processor is missing a required property).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     ingest.simulate___200:
       content:
         application/json:
@@ -42104,6 +42118,12 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/_common___StringOrStringArray'
+        index:
+          $ref: '#/components/schemas/_common___IndexName'
+          description: The name of the index associated with the error. Present when the exception is associated with a specific index or shard.
+        index_uuid:
+          $ref: '#/components/schemas/_common___Uuid'
+          description: The UUID of the index associated with the error, or `_na_` when the UUID is unknown. Present when the exception is associated with a specific index or shard.
         lang:
           description: The scripting language. Present in `script_exception` responses.
           type: string
@@ -42128,8 +42148,23 @@ components:
         position:
           description: The position of the error in the script. Present in `script_exception` responses.
           $ref: '#/components/schemas/_common___ScriptExceptionPosition'
+        processor_tag:
+          description: The tag of the processor whose configuration is invalid. Present in ingest or search pipeline configuration errors when the processor has a tag.
+          type: string
+        processor_type:
+          description: The type of the processor whose configuration is invalid, such as `set`. Present in ingest or search pipeline configuration errors when known.
+          type: string
+        property_name:
+          description: The name of the processor property that is missing or invalid. Present in ingest or search pipeline configuration errors when known.
+          type: string
         reason:
           description: A human-readable explanation of the error, in English.
+          type: string
+        resource.id:
+          description: The identifiers of the resources associated with the error, such as the index expression that could not be resolved. A single identifier is returned as a string. Present in `index_not_found_exception` and `aliases_not_found_exception` responses.
+          $ref: '#/components/schemas/_common___StringOrStringArray'
+        resource.type:
+          description: The type of resource identified by `resource.id`, such as `index_or_alias`, `index_expression`, or `aliases`. Present in `index_not_found_exception` and `aliases_not_found_exception` responses.
           type: string
         response_limit:
           x-version-added: 2.18.0
@@ -42148,6 +42183,9 @@ components:
           type: array
           items:
             type: string
+        shard:
+          description: The shard number associated with the error, serialized as a string. Present when the exception is associated with a specific shard.
+          type: string
         stack_trace:
           description: The server stack trace, present only if the `error_trace=true` parameter was sent with the request.
           type: string
@@ -59001,14 +59039,14 @@ components:
         matching_sync_id:
           type: boolean
         store_exception:
-          type: string
+          description: The exception raised when the node failed to open the shard's on-disk index.
+          $ref: '#/components/schemas/_common___ErrorCause'
       required:
         - allocation_id
         - found
         - in_sync
         - matching_size_in_bytes
         - matching_sync_id
-        - store_exception
     cluster.allocation_explain___ClusterInfo:
       type: object
       properties:
@@ -63695,18 +63733,8 @@ components:
           const: unused
           type: string
     indices.shard_stores___ShardStoreException:
-      description: The exception information for a shard store.
-      type: object
-      properties:
-        reason:
-          type: string
-          description: The reason for the store exception.
-        type:
-          type: string
-          description: The type of store exception.
-      required:
-        - reason
-        - type
+      description: The exception raised when the node failed to open the shard's on-disk index.
+      $ref: '#/components/schemas/_common___ErrorCause'
     indices.shard_stores___ShardStoreStatus:
       description: The status of shard stores.
       oneOf:
@@ -65412,9 +65440,27 @@ components:
         transform:
           $ref: '#/components/schemas/ism._common___ActionTransform'
           description: Determines when to perform an index transform.
+          x-version-added: '2.12'
         shrink:
           $ref: '#/components/schemas/ism._common___ActionShrink'
           description: Determines when to shrink the index.
+          x-version-added: '2.0'
+        convert_index_to_remote:
+          $ref: '#/components/schemas/ism._common___ActionConvertIndexToRemote'
+          description: Restores the index from a snapshot as a remote snapshot index.
+          x-version-added: '3.0'
+        stop_replication:
+          $ref: '#/components/schemas/ism._common___ActionStopReplication'
+          description: Stops cross-cluster replication on a follower index.
+          x-version-added: '3.0'
+        search_only:
+          $ref: '#/components/schemas/ism._common___ActionSearchOnly'
+          description: Scales the index to search-only mode.
+          x-version-added: '3.5'
+        publish_field_domains:
+          $ref: '#/components/schemas/ism._common___ActionPublishFieldDomains'
+          description: Computes and publishes the value domains of index fields.
+          x-version-added: '3.9'
         custom:
           $ref: '#/components/schemas/ism._common___ActionCustom'
           description: Enables custom operations to be performed on the index.
@@ -65423,9 +65469,63 @@ components:
       properties:
         actions:
           type: array
+          minItems: 1
           items:
-            $ref: '#/components/schemas/indices.update_aliases___Action'
+            $ref: '#/components/schemas/ism._common___ActionAliasAction'
           description: The alias actions to perform.
+      required:
+        - actions
+    ism._common___ActionAliasAction:
+      type: object
+      description: An alias action on the managed index. Only `add` and `remove` are supported.
+      properties:
+        add:
+          $ref: '#/components/schemas/ism._common___ActionAliasAdd'
+        remove:
+          $ref: '#/components/schemas/ism._common___ActionAliasRemove'
+      minProperties: 1
+      maxProperties: 1
+    ism._common___ActionAliasAdd:
+      type: object
+      description: Adds aliases to the managed index. Requires exactly one of `alias` or `aliases`.
+      properties:
+        alias:
+          $ref: '#/components/schemas/_common___IndexAlias'
+        aliases:
+          $ref: '#/components/schemas/ism._common___ActionAliasNames'
+        filter:
+          $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+        index_routing:
+          $ref: '#/components/schemas/_common___Routing'
+        is_hidden:
+          type: boolean
+          description: Whether the alias is hidden.
+        is_write_index:
+          type: boolean
+          description: Whether the managed index is the write index for the alias.
+        routing:
+          $ref: '#/components/schemas/_common___Routing'
+        search_routing:
+          $ref: '#/components/schemas/_common___Routing'
+    ism._common___ActionAliasNames:
+      description: The aliases. Index alias names support date math.
+      oneOf:
+        - $ref: '#/components/schemas/_common___IndexAlias'
+        - type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/_common___IndexAlias'
+    ism._common___ActionAliasRemove:
+      type: object
+      description: Removes aliases from the managed index. Requires exactly one of `alias` or `aliases`.
+      properties:
+        alias:
+          $ref: '#/components/schemas/_common___IndexAlias'
+        aliases:
+          $ref: '#/components/schemas/ism._common___ActionAliasNames'
+        must_exist:
+          type: boolean
+          description: Whether the alias must exist to perform the action.
     ism._common___ActionAllocation:
       type: object
       properties:
@@ -65447,6 +65547,43 @@ components:
     ism._common___ActionClose:
       type: object
       description: The close action configuration.
+    ism._common___ActionConvertIndexToRemote:
+      type: object
+      description: The convert index to remote action configuration.
+      properties:
+        repository:
+          type: string
+          description: The repository that holds the snapshot.
+        snapshot:
+          type: string
+          description: The name of the snapshot to restore.
+        include_aliases:
+          type: boolean
+          default: false
+          description: Whether to restore the aliases of the index.
+          x-version-added: '3.7'
+        ignore_index_settings:
+          type: string
+          default: ''
+          description: Comma-separated list of index settings to ignore when restoring.
+          x-version-added: '3.7'
+        number_of_replicas:
+          type: integer
+          description: The number of replicas of the restored index.
+          x-version-added: '3.7'
+        delete_original_index:
+          type: boolean
+          default: false
+          description: Whether to delete the original index after the restore.
+          x-version-added: '3.7'
+        rename_pattern:
+          type: string
+          default: $1_remote
+          description: The pattern for the name of the restored index.
+          x-version-added: '3.5'
+      required:
+        - repository
+        - snapshot
     ism._common___ActionCustom:
       type: object
       additionalProperties: true
@@ -65460,19 +65597,43 @@ components:
         max_num_segments:
           type: integer
           description: The maximum number of segments to merge to.
+      required:
+        - max_num_segments
     ism._common___ActionIndexPriority:
       type: object
       properties:
         priority:
-          type: number
+          type: integer
           description: The priority to set for the index.
+      required:
+        - priority
     ism._common___ActionNotification:
       type: object
-      additionalProperties: true
-      description: The notification action configuration.
+      description: The notification action configuration. Requires exactly one of `destination` or `channel`.
+      properties:
+        destination:
+          $ref: '#/components/schemas/ism._common___ErrorNotificationDestination'
+        channel:
+          $ref: '#/components/schemas/ism._common___Channel'
+        message_template:
+          $ref: '#/components/schemas/_common___Script'
+      required:
+        - message_template
     ism._common___ActionOpen:
       type: object
       description: The open action configuration.
+    ism._common___ActionPublishFieldDomains:
+      type: object
+      description: The publish field domains action configuration.
+      properties:
+        fields:
+          type: array
+          minItems: 1
+          description: The fields to compute the value domains for.
+          items:
+            $ref: '#/components/schemas/ism._common___FieldDomain'
+      required:
+        - fields
     ism._common___ActionReadOnly:
       type: object
       description: The read-only action configuration.
@@ -65483,20 +65644,31 @@ components:
       type: object
       properties:
         number_of_replicas:
-          type: number
+          type: integer
           description: The number of replicas to set.
+      required:
+        - number_of_replicas
     ism._common___ActionRetry:
       type: object
       properties:
         count:
           type: integer
+          format: int64
           description: The number of retry attempts.
         backoff:
-          type: string
-          description: The backoff strategy for retries.
+          $ref: '#/components/schemas/ism._common___ActionRetryBackoff'
         delay:
-          type: string
+          $ref: '#/components/schemas/_common___Duration'
           description: The delay between retry attempts.
+      required:
+        - count
+    ism._common___ActionRetryBackoff:
+      type: string
+      description: The backoff strategy for retries.
+      enum:
+        - constant
+        - exponential
+        - linear
     ism._common___ActionRollover:
       type: object
       properties:
@@ -65507,7 +65679,8 @@ components:
           type: string
           description: The minimum index age to trigger rollover.
         min_doc_count:
-          type: number
+          type: integer
+          format: int64
           description: The minimum document count to trigger rollover.
         min_primary_shard_size:
           type: string
@@ -65517,12 +65690,50 @@ components:
           description: Whether to copy the alias to the new index.
     ism._common___ActionRollup:
       type: object
-      additionalProperties: true
       description: The rollup action configuration.
+      properties:
+        ism_rollup:
+          type: object
+          additionalProperties: true
+          description: The rollup job to run on the index.
+      required:
+        - ism_rollup
+    ism._common___ActionSearchOnly:
+      type: object
+      description: The search-only action configuration.
     ism._common___ActionShrink:
       type: object
-      additionalProperties: true
-      description: The shrink action configuration.
+      description: The shrink action configuration. Requires exactly one of `num_new_shards`, `max_shard_size` or `percentage_of_source_shards`.
+      properties:
+        num_new_shards:
+          type: integer
+          description: The number of primary shards of the shrunken index.
+        max_shard_size:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        percentage_of_source_shards:
+          type: number
+          format: double
+          exclusiveMinimum: 0
+          exclusiveMaximum: 1
+          description: The number of primary shards of the shrunken index as a fraction of the source shards.
+        target_index_name_template:
+          $ref: '#/components/schemas/_common___Script'
+        aliases:
+          type: array
+          description: The aliases to add to the shrunken index.
+          items:
+            type: object
+            additionalProperties:
+              $ref: '#/components/schemas/indices._common___Alias'
+            minProperties: 1
+            maxProperties: 1
+        switch_aliases:
+          type: boolean
+          description: Whether to move the aliases of the source index to the shrunken index.
+          x-version-added: '2.12'
+        force_unsafe:
+          type: boolean
+          description: Whether to shrink the index even if it has no replicas.
     ism._common___ActionSnapshot:
       type: object
       properties:
@@ -65532,13 +65743,22 @@ components:
         snapshot:
           type: string
           description: The name of the snapshot.
-        include_global_state:
-          type: boolean
-          description: Whether to include the global state in the snapshot.
+      required:
+        - repository
+        - snapshot
+    ism._common___ActionStopReplication:
+      type: object
+      description: The stop replication action configuration.
     ism._common___ActionTransform:
       type: object
-      additionalProperties: true
       description: The transform action configuration.
+      properties:
+        ism_transform:
+          type: object
+          additionalProperties: true
+          description: The transform job to run on the index.
+      required:
+        - ism_transform
     ism._common___AddPolicyRequest:
       type: object
       properties:
@@ -65571,7 +65791,7 @@ components:
       type: object
       properties:
         updated_indices:
-          type: number
+          type: integer
           description: The number of updated indices.
         failures:
           type: boolean
@@ -65587,46 +65807,97 @@ components:
         id:
           type: string
           description: The ID of the notification channel.
+      required:
+        - id
     ism._common___DeletePolicyResponse:
       $ref: '#/components/schemas/_common___WriteResponseBase'
     ism._common___ErrorNotification:
       type: object
+      description: The error notification configuration. Requires exactly one of `destination` or `channel`.
       properties:
         destination:
           $ref: '#/components/schemas/ism._common___ErrorNotificationDestination'
         channel:
           $ref: '#/components/schemas/ism._common___Channel'
         message_template:
-          type: object
-          additionalProperties: true
-          description: The template for error notification messages.
+          $ref: '#/components/schemas/_common___Script'
+      required:
+        - message_template
     ism._common___ErrorNotificationChime:
       type: object
       properties:
         url:
           type: string
           description: The URL for the Chime webhook.
+      required:
+        - url
+    ism._common___ErrorNotificationCustomWebhook:
+      type: object
+      description: The custom webhook. Requires `url` or `host`.
+      properties:
+        url:
+          type:
+            - 'null'
+            - string
+          description: The URL for the custom webhook.
+        scheme:
+          type:
+            - 'null'
+            - string
+          description: The scheme for the custom webhook.
+        host:
+          type:
+            - 'null'
+            - string
+          description: The host for the custom webhook.
+        port:
+          type: integer
+          description: The port for the custom webhook.
+        path:
+          type:
+            - 'null'
+            - string
+          description: The path for the custom webhook.
+        query_params:
+          type: object
+          additionalProperties:
+            type: string
+          description: The query parameters for the custom webhook.
+        header_params:
+          type: object
+          additionalProperties:
+            type: string
+          description: The header parameters for the custom webhook.
+        username:
+          type:
+            - 'null'
+            - string
+          description: The username for the custom webhook.
+        password:
+          type:
+            - 'null'
+            - string
+          description: The password for the custom webhook.
     ism._common___ErrorNotificationDestination:
       type: object
+      description: The notification destination. Requires exactly one of `chime`, `slack` or `custom_webhook`.
       properties:
-        name:
-          type: string
-          description: The name of the notification destination.
-        last_update_time:
-          type: integer
-          description: When the notification destination was last updated.
-      additionalProperties:
-        anyOf:
-          - $ref: '#/components/schemas/ism._common___ErrorNotificationChime'
-          - $ref: '#/components/schemas/ism._common___ErrorNotificationSlack'
+        chime:
+          $ref: '#/components/schemas/ism._common___ErrorNotificationChime'
+        slack:
+          $ref: '#/components/schemas/ism._common___ErrorNotificationSlack'
+        custom_webhook:
+          $ref: '#/components/schemas/ism._common___ErrorNotificationCustomWebhook'
+      minProperties: 1
+      maxProperties: 1
     ism._common___ErrorNotificationSlack:
       type: object
       properties:
         url:
           type: string
           description: The URL for the Slack webhook.
-        custom_webhook:
-          $ref: '#/components/schemas/ism._common___SlackCustomWebhook'
+      required:
+        - url
     ism._common___ExplainActionMetadata:
       type: object
       description: The current action of the managed index.
@@ -65675,7 +65946,7 @@ components:
       type: object
       properties:
         total_managed_indices:
-          type: number
+          type: integer
           description: The total number of managed indices.
       additionalProperties:
         $ref: '#/components/schemas/ism._common___ExplainPolicy'
@@ -65804,11 +66075,27 @@ components:
         reason:
           type: string
           description: The reason for the failure.
+    ism._common___FieldDomain:
+      type: object
+      properties:
+        field:
+          type: string
+          description: The name of the field.
+        type:
+          $ref: '#/components/schemas/ism._common___FieldDomainType'
+      required:
+        - field
+        - type
+    ism._common___FieldDomainType:
+      type: string
+      description: The type of the field domain calculator.
+      enum:
+        - date_range
     ism._common___GetPoliciesResponse:
       type: object
       properties:
         total_policies:
-          type: number
+          type: integer
           description: The total number of policies.
         policies:
           type: array
@@ -65823,6 +66110,8 @@ components:
         state:
           type: string
           description: The name of the state to include.
+      required:
+        - state
     ism._common___IsmTemplate:
       type: object
       properties:
@@ -65832,7 +66121,7 @@ components:
             type: string
           description: The index patterns for the ISM template.
         priority:
-          type: number
+          type: integer
           description: The priority of the ISM template.
         last_updated_time:
           $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
@@ -65843,7 +66132,8 @@ components:
         _id:
           $ref: '#/components/schemas/_common___Id'
         _primary_term:
-          type: number
+          type: integer
+          format: int64
           description: The primary term of the document.
         _seq_no:
           $ref: '#/components/schemas/_common___SequenceNumber'
@@ -65863,7 +66153,8 @@ components:
           $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
           description: When the policy was last updated.
         schema_version:
-          type: number
+          type: integer
+          format: int64
           description: The version of the policy schema.
         error_notification:
           oneOf:
@@ -65886,6 +66177,10 @@ components:
               items:
                 $ref: '#/components/schemas/ism._common___IsmTemplate'
           description: The ISM template configuration.
+      required:
+        - default_state
+        - description
+        - states
     ism._common___PolicyEnvelope:
       type: object
       properties:
@@ -65936,38 +66231,6 @@ components:
           description: The state to transition to before retrying. If omitted, the failed action is retried.
     ism._common___RetryIndexResponse:
       $ref: '#/components/schemas/ism._common___ChangeResponse'
-    ism._common___SlackCustomWebhook:
-      type: object
-      properties:
-        url:
-          type: string
-          description: The URL for the custom Slack webhook.
-        scheme:
-          type: string
-          description: The scheme for the custom Slack webhook.
-        host:
-          type: string
-          description: The host for the custom Slack webhook.
-        port:
-          type: integer
-          description: The port for the custom Slack webhook.
-        path:
-          type: string
-          description: The path for the custom Slack webhook.
-        query_params:
-          type: object
-          additionalProperties: true
-          description: The query parameters for the custom Slack webhook.
-        header_params:
-          type: object
-          additionalProperties: true
-          description: The header parameters for the custom Slack webhook.
-        username:
-          type: string
-          description: The username for the custom Slack webhook.
-        password:
-          type: string
-          description: The password for the custom Slack webhook.
     ism._common___States:
       type: object
       description: The list of actions to perform and transitions to enter a new state.
@@ -65985,6 +66248,8 @@ components:
           description: The list of transitions to enter a new state.
           items:
             $ref: '#/components/schemas/ism._common___Transition'
+      required:
+        - name
     ism._common___StepStatus:
       type: string
       description: The status of the step.
@@ -66002,9 +66267,42 @@ components:
           type: string
           description: The name of the state to transition to.
         conditions:
-          type: object
-          additionalProperties: true
-          description: The conditions for the transition.
+          $ref: '#/components/schemas/ism._common___TransitionConditions'
+      required:
+        - state_name
+    ism._common___TransitionConditions:
+      type: object
+      description: The condition for the transition. Accepts at most one condition.
+      properties:
+        min_index_age:
+          $ref: '#/components/schemas/_common___Duration'
+        min_doc_count:
+          type: integer
+          format: int64
+          minimum: 1
+          description: The minimum document count of the index.
+        min_size:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        cron:
+          $ref: '#/components/schemas/ism._common___TransitionCron'
+        min_rollover_age:
+          $ref: '#/components/schemas/_common___Duration'
+          x-version-added: '1.3'
+        no_alias:
+          type: boolean
+          description: If `true`, the index must have no aliases. If `false`, the index must have at least one alias.
+          x-version-added: '3.2'
+        min_state_age:
+          $ref: '#/components/schemas/_common___Duration'
+          x-version-added: '3.2'
+      maxProperties: 1
+    ism._common___TransitionCron:
+      type: object
+      properties:
+        cron:
+          $ref: '#/components/schemas/rollups._common___Cron'
+      required:
+        - cron
     ism._common___ValidationStatus:
       type: string
       description: The validation status.
