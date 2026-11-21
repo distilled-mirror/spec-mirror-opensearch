@@ -70871,8 +70871,11 @@ components:
         - indices
         - ingest
         - jvm
+        - native_allocator
+        - native_memory
         - os
         - process
+        - remote_store
         - repositories
         - resource_usage_stats
         - script
@@ -70885,6 +70888,45 @@ components:
         - thread_pool
         - transport
         - weighted_routing
+    nodes.stats___NativeMemory:
+      type: object
+      properties:
+        total_estimated_bytes:
+          description: Estimated process native memory, calculated as anonymous resident memory minus committed JVM heap and non-heap memory, floored at `0`. `-1` if the estimate is unavailable.
+          $ref: '#/components/schemas/_common___ByteCount'
+        analytics_backend:
+          description: Native memory tracked by the `jemalloc` allocator of the analytics backend. Present only when the `native_memory` metric is requested and an analytics backend plugin reports it.
+          $ref: '#/components/schemas/nodes.stats___NativeMemoryAnalyticsBackend'
+        native_allocator:
+          description: Native allocator pool statistics. Present only when the `native_allocator` metric is requested and a plugin that owns a native allocator reports them.
+          $ref: '#/components/schemas/nodes.stats___NativeMemoryAllocator'
+    nodes.stats___NativeMemoryAllocator:
+      type: object
+      properties:
+        root:
+          description: Statistics for the root allocator.
+          $ref: '#/components/schemas/nodes.stats___NativeMemoryAllocatorPool'
+        pools:
+          description: Statistics for each allocator pool, keyed by pool name.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/nodes.stats___NativeMemoryAllocatorPool'
+    nodes.stats___NativeMemoryAllocatorPool:
+      type: object
+      properties:
+        allocated_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        peak_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        limit_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+    nodes.stats___NativeMemoryAnalyticsBackend:
+      type: object
+      properties:
+        allocated_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        resident_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
     nodes.stats___NodeBufferPool:
       type: object
       properties:
@@ -71211,6 +71253,7 @@ components:
         global_cpu_usage:
           $ref: '#/components/schemas/nodes.stats___UsageStats'
         global_native_memory_usage:
+          x-version-added: '3.7'
           $ref: '#/components/schemas/nodes.stats___UsageStats'
     nodes.stats___ShardClusterManagerThrottlingStats:
       type: object
@@ -71441,6 +71484,7 @@ components:
         memory_utilization_percent:
           $ref: '#/components/schemas/_common___PercentageString'
         native_memory_utilization_percent:
+          x-version-added: '3.7'
           $ref: '#/components/schemas/_common___PercentageString'
         io_usage_stats:
           $ref: '#/components/schemas/nodes.stats___ShardResourceUsageStatsIoUsageStats'
@@ -71524,6 +71568,20 @@ components:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         rolling_avg_bytes:
           $ref: '#/components/schemas/_common___ByteCount'
+    nodes.stats___ShardSearchBackpressureTaskResourceTrackerNativeMemoryUsageTrackerStats:
+      type: object
+      properties:
+        cancellation_count:
+          type: integer
+          format: int64
+        current_max:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        current_max_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        current_avg:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        current_avg_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
     nodes.stats___ShardSearchBackpressureTaskResourceTrackerStats:
       type: object
       properties:
@@ -71533,6 +71591,9 @@ components:
           $ref: '#/components/schemas/nodes.stats___ShardSearchBackpressureTaskResourceTrackerElapsedTimeTrackerStats'
         cpu_usage_tracker:
           $ref: '#/components/schemas/nodes.stats___ShardSearchBackpressureTaskResourceTrackerCpuUsageTrackerStats'
+        native_memory_usage_tracker:
+          x-version-added: '3.7'
+          $ref: '#/components/schemas/nodes.stats___ShardSearchBackpressureTaskResourceTrackerNativeMemoryUsageTrackerStats'
     nodes.stats___ShardSearchBackpressureTaskStats:
       type: object
       properties:
@@ -71726,6 +71787,10 @@ components:
                 $ref: '#/components/schemas/_common___Ip'
         jvm:
           $ref: '#/components/schemas/nodes.stats___Jvm'
+        native_memory:
+          description: Native (off-heap) memory statistics. Always present, regardless of the requested metrics.
+          x-version-added: '3.7'
+          $ref: '#/components/schemas/nodes.stats___NativeMemory'
         name:
           $ref: '#/components/schemas/_common___Name'
         os:
