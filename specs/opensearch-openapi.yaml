@@ -2027,6 +2027,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/cluster.describe_settings___200'
+        '400':
+          $ref: '#/components/responses/cluster.describe_settings___400'
   /_cluster/state:
     get:
       operationId: cluster.state.0
@@ -36744,6 +36746,12 @@ components:
             required:
               - settings
       description: ''
+    cluster.describe_settings___400:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+      description: ''
     cluster.exists_component_template___200:
       content:
         application/json: {}
@@ -62890,6 +62898,22 @@ components:
         read_forward:
           description: Whether translog read-forward is enabled.
           type: string
+        batch_append:
+          $ref: '#/components/schemas/indices._common___TranslogBatchAppend'
+          x-version-added: '3.10'
+    indices._common___TranslogBatchAppend:
+      type: object
+      description: The translog batch append configuration.
+      properties:
+        enabled:
+          $ref: '#/components/schemas/_common___StringifiedBoolean'
+          description: Whether successful primary index operations are appended to the translog in bounded batches instead of one write per operation. Only takes effect on remote-backed indexes that use segment replication and a remote translog. Default is `false`.
+        max_size:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+          description: The maximum serialized size of one batched translog append. Valid values are `4kb` to `64mb`. Default is `1mb`.
+        max_operations:
+          $ref: '#/components/schemas/_common___StringifiedInteger'
+          description: The maximum number of operations in one batched translog append. Valid values are `1` to `100000`. Default is `1000`.
     indices._common___TranslogDurability:
       description: The durability settings for the translog.
       oneOf:
@@ -76672,6 +76696,16 @@ components:
           description: The total number of cancelled requests for the workload group on the node.
           type: integer
           format: int64
+        total_throttled:
+          description: The total number of requests rejected because of a throttling limit for the workload group on the node.
+          type: integer
+          format: int64
+          x-version-added: '3.10'
+        total_would_throttle:
+          description: The total number of requests that a `monitor` mode workload group would have rejected on the node.
+          type: integer
+          format: int64
+          x-version-added: '3.10'
         cpu:
           description: CPU resource statistics for the workload group.
           $ref: '#/components/schemas/wlm._common___WlmResourceStats'
