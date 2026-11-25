@@ -44759,6 +44759,7 @@ components:
           required:
             - key
     _common.aggregations___Aggregate:
+      x-non-exhaustive: true
       x-supports-typed-keys: true
       anyOf:
         - title: adjacency_matrix
@@ -44911,6 +44912,7 @@ components:
           description: Custom metadata to associate with the aggregation (optional)
           $ref: '#/components/schemas/_common___Metadata'
     _common.aggregations___AggregationContainer:
+      x-non-exhaustive: true
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___Aggregation'
         - type: object
@@ -48239,6 +48241,7 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___SingleMetricAggregateBase'
     _common.analysis___Analyzer:
       type: object
+      x-non-exhaustive: true
       discriminator:
         propertyName: type
       oneOf:
@@ -48286,6 +48289,7 @@ components:
           $ref: '#/components/schemas/_common___VersionString'
     _common.analysis___CharFilterDefinition:
       type: object
+      x-non-exhaustive: true
       discriminator:
         propertyName: type
       oneOf:
@@ -49858,6 +49862,7 @@ components:
           $ref: '#/components/schemas/_common___VersionString'
     _common.analysis___TokenFilterDefinition:
       type: object
+      x-non-exhaustive: true
       discriminator:
         propertyName: type
       oneOf:
@@ -49924,6 +49929,7 @@ components:
           $ref: '#/components/schemas/_common___VersionString'
     _common.analysis___TokenizerDefinition:
       type: object
+      x-non-exhaustive: true
       discriminator:
         propertyName: type
       oneOf:
@@ -50939,6 +50945,7 @@ components:
             - type
     _common.mapping___Property:
       type: object
+      x-non-exhaustive: true
       discriminator:
         propertyName: type
         x-default: object
@@ -52847,6 +52854,7 @@ components:
           type: string
     _common.query_dsl___QueryContainer:
       type: object
+      x-non-exhaustive: true
       properties:
         agentic:
           $ref: '#/components/schemas/_common.query_dsl___AgenticQuery'
@@ -53534,6 +53542,7 @@ components:
             - clauses
     _common.query_dsl___SpanQuery:
       type: object
+      x-non-exhaustive: true
       properties:
         span_containing:
           $ref: '#/components/schemas/_common.query_dsl___SpanContainingQuery'
@@ -55249,6 +55258,7 @@ components:
       required:
         - field
     _core.search___FieldSuggester:
+      x-non-exhaustive: true
       allOf:
         - type: object
           properties:
@@ -64723,6 +64733,7 @@ components:
           type: string
     ingest._common___ProcessorContainer:
       type: object
+      x-non-exhaustive: true
       properties:
         attachment:
           $ref: '#/components/schemas/ingest._common___AttachmentProcessor'
